@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My MIMIS?</title>
+    <title>Be My Valentine?</title>
     <style>
         body {
             display: flex;
@@ -46,11 +46,10 @@
             position: absolute;
         }
         @keyframes shake {
-            0% { transform: translateX(0); }
+            0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
             50% { transform: translateX(5px); }
             75% { transform: translateX(-5px); }
-            100% { transform: translateX(5px); }
         }
         @keyframes fall {
             from { transform: translateY(-100vh); }
@@ -77,7 +76,7 @@
     </style>
 </head>
 <body>
-    <h1>Will you be mimisul meu? ❤️🐈</h1>
+    <h1>Will you be mimisul meu? 🐱❤️</h1>
     <div class="buttons">
         <button class="yes" onclick="acceptLove()">Yes</button>
         <button class="no" onmouseover="moveNoButton()">No</button>
@@ -85,22 +84,25 @@
     
     <script>
         let noButton = document.querySelector('.no');
+        let body = document.body;
 
         function acceptLove() {
-            document.body.innerHTML = "<h1>YUPI YUPI YUPI YUPI YUPI MIMIS MIMIS MIMIS MAUR BALAUR BAULES PARROUS MORRIS MAURICE ❤️🥰 TE IUBI</h1>";
+            body.innerHTML = "<h1 style='animation: shake 0.5s;'>YUPI YUPI YUPI YUPI YUPI MIMIS MIMIS MIMIS MAUR BALAUR BAULES PARROUS MORRIS MAURICE ❤️🥰 TE IUBI</h1>";
+            createSnowflakes();
             launchFireworks();
         }
 
         function moveNoButton() {
-            noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-            noButton.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            noButton.style.transform = `translate(${x}px, ${y}px)`;
         }
 
         function createSnowflakes() {
             const images = [
-                'https://i.imgur.com/eG8Lj15.jpeg', 
-                'https://i.imgur.com/4G11BAY.jpeg', 
-                'https://i.imgur.com/JxwcKb0.jpeg' 
+                'https://i.imgur.com/eG8Lj15.jpeg',
+                'https://i.imgur.com/4G11BAY.jpeg',
+                'https://i.imgur.com/JxwcKb0.jpeg'
             ];
             for (let i = 0; i < 10; i++) {
                 let snowflake = document.createElement('img');
@@ -127,8 +129,6 @@
             }
             createFirework();
         }
-
-        createSnowflakes();
     </script>
 </body>
 </html>
