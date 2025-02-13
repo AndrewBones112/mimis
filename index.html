@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
+    <title>BE MY MIMIS?</title>
     <style>
         body {
             display: flex;
@@ -24,9 +24,9 @@
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
         }
         .buttons {
-            position: relative;
             display: flex;
             gap: 20px;
+            position: relative;
         }
         button {
             font-size: 1.5rem;
@@ -76,7 +76,7 @@
     </style>
 </head>
 <body>
-    <h1>Will you be mimisul meu? 🐱❤️</h1>
+    <h1 id="question">Will you be mimisul meu? 🐱❤️</h1>
     <div class="buttons">
         <button class="yes" onclick="acceptLove()">Yes</button>
         <button class="no" onmouseover="moveNoButton()">No</button>
@@ -87,15 +87,17 @@
         let body = document.body;
 
         function acceptLove() {
-            body.innerHTML = "<h1 style='animation: shake 0.5s;'>YUPI YUPI YUPI YUPI YUPI MIMIS MIMIS MIMIS MAUR BALAUR BAULES PARROUS MORRIS MAURICE ❤️🥰 TE IUBI</h1>";
+            document.getElementById('question').innerHTML = "YUPI YUPI YUPI YUPI YUPI MIMIS MIMIS MIMIS MAUR BALAUR BAULES PARROUS MORRIS MAURICE ❤️🥰 TE IUBI";
+            document.getElementById('question').style.animation = 'shake 0.5s';
             createSnowflakes();
             launchFireworks();
         }
 
         function moveNoButton() {
-            let x = Math.random() * (window.innerWidth - 100);
+            let x = Math.random() * (window.innerWidth - 200);
             let y = Math.random() * (window.innerHeight - 100);
-            noButton.style.transform = `translate(${x}px, ${y}px)`;
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
         }
 
         function createSnowflakes() {
@@ -112,6 +114,7 @@
                 snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
                 document.body.appendChild(snowflake);
             }
+            setTimeout(createSnowflakes, 5000);
         }
 
         function launchFireworks() {
