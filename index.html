@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BE MY MIMIS?</title>
-            <style>
+    <style>
         body {
             display: flex;
             flex-direction: column;
@@ -26,7 +26,6 @@
         .buttons {
             display: flex;
             gap: 20px;
-            position: relative;
         }
         button {
             font-size: 1.5rem;
@@ -44,7 +43,6 @@
         .no {
             background-color: #f44336;
             color: white;
-            position: absolute;
         }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
@@ -80,7 +78,7 @@
     <h1 id="question">Will you be mimisul meu? 🐱❤️</h1>
     <div class="buttons">
         <button class="yes" onclick="acceptLove()">Yes</button>
-        <button class="no" onmouseover="moveNoButton()">No</button>
+        <button class="no" onclick="moveNoButton()">No</button>
     </div>
     
     <script>
@@ -92,14 +90,16 @@
             document.getElementById('question').style.animation = 'shake 0.5s';
             createSnowflakes();
             launchFireworks();
+            showVideo();
         }
 
         function moveNoButton() {
-            let rect = noButton.getBoundingClientRect();
-            let x = Math.min(Math.max(rect.left + (Math.random() * 50 - 25), 0), window.innerWidth - rect.width);
-            let y = Math.min(Math.max(rect.top + (Math.random() * 50 - 25), 0), window.innerHeight - rect.height);
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.position = 'absolute';
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
+            document.body.style.animation = 'shake 0.5s';
         }
 
         function createSnowflakes() {
@@ -133,6 +133,15 @@
                 requestAnimationFrame(createFirework);
             }
             createFirework();
+        }
+
+        function showVideo() {
+            let video = document.createElement('iframe');
+            video.src = "https://www.youtube.com/embed/ReI6gvzVP0Y?autoplay=1";
+            video.width = "560";
+            video.height = "315";
+            video.allow = "autoplay";
+            document.body.appendChild(video);
         }
     </script>
 </body>
