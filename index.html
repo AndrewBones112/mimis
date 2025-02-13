@@ -15,6 +15,8 @@
             font-family: 'Arial', sans-serif;
             text-align: center;
             color: white;
+            overflow: hidden;
+            position: relative;
         }
         h1 {
             font-size: 3rem;
@@ -40,7 +42,7 @@
         .no {
             background-color: #f44336;
             color: white;
-            position: relative;
+            position: absolute;
         }
         @keyframes shake {
             0% { transform: translateX(0); }
@@ -49,29 +51,58 @@
             75% { transform: translateX(-5px); }
             100% { transform: translateX(5px); }
         }
+        @keyframes fall {
+            from { transform: translateY(-100vh); }
+            to { transform: translateY(100vh); }
+        }
+        .snowflake {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: fall linear infinite;
+        }
     </style>
 </head>
 <body>
-    <h1>Will you be my Valentine? ❤️</h1>
+    <h1>Will you be mimisul meu? ❤️🐈</h1>
     <div class="buttons">
         <button class="yes" onclick="acceptLove()">Yes</button>
         <button class="no" onclick="declineLove()">No</button>
     </div>
-
+    
     <script>
         let noButton = document.querySelector('.no');
         let sizeMultiplier = 1;
 
         function acceptLove() {
-            document.body.innerHTML = "<h1>YUPI YUPI YUPI YUPI YUPI MIMIS MIMIS MIMIS MAUR BALAUR BAULES PARROUS MORRIS MAURICE ❤️🥰</h1>";
+            document.body.innerHTML = "<h1>YUPI YUPI YUPI YUPI YUPI MIMIS MIMIS MIMIS MAUR BALAUR BAULES PARROUS MORRIS MAURICE ❤️🥰 TE IUBI</h1>";
         }
 
         function declineLove() {
-            sizeMultiplier += 0.3;
+            sizeMultiplier *= 0.8;
             noButton.style.transform = `scale(${sizeMultiplier})`;
             noButton.style.animation = 'shake 0.3s';
+            noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            noButton.style.top = Math.random() * (window.innerHeight - 100) + 'px';
             setTimeout(() => noButton.style.animation = '', 300);
         }
+
+        function createSnowflakes() {
+            const images = [
+                'https://i.imgur.com/eG8Lj15.jpeg', 
+                'https://i.imgur.com/4G11BAY.jpeg', 
+                'https://i.imgur.com/JxwcKb0.jpeg' 
+            ];
+            for (let i = 0; i < 10; i++) {
+                let snowflake = document.createElement('img');
+                snowflake.src = images[Math.floor(Math.random() * images.length)];
+                snowflake.className = 'snowflake';
+                snowflake.style.left = Math.random() * window.innerWidth + 'px'; // de ce mi citesti codul
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(snowflake);
+            }
+        }
+        createSnowflakes();
     </script>
 </body>
 </html>
