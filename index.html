@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BE MY MIMIS?</title>
-        <style>
+            <style>
         body {
             display: flex;
             flex-direction: column;
@@ -44,9 +44,7 @@
         .no {
             background-color: #f44336;
             color: white;
-        }
-        .no:hover {
-            transform: translate(5px, 5px);
+            position: absolute;
         }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
@@ -98,9 +96,8 @@
 
         function moveNoButton() {
             let rect = noButton.getBoundingClientRect();
-            let x = rect.left + (Math.random() * 20 - 10);
-            let y = rect.top + (Math.random() * 20 - 10);
-            noButton.style.position = "absolute";
+            let x = Math.min(Math.max(rect.left + (Math.random() * 50 - 25), 0), window.innerWidth - rect.width);
+            let y = Math.min(Math.max(rect.top + (Math.random() * 50 - 25), 0), window.innerHeight - rect.height);
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
         }
