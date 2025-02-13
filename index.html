@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
+    <title>Be My Mimis?</title>
     <style>
         body {
             display: flex;
@@ -72,19 +72,14 @@
     
     <script>
         let noButton = document.querySelector('.no');
-        let sizeMultiplier = 1;
 
         function acceptLove() {
             document.body.innerHTML = "<h1>YUPI YUPI YUPI YUPI YUPI MIMIS MIMIS MIMIS MAUR BALAUR BAULES PARROUS MORRIS MAURICE ❤️🥰 TE IUBI</h1>";
         }
 
-        function declineLove() {
-            sizeMultiplier *= 0.8;
-            noButton.style.transform = `scale(${sizeMultiplier})`;
-            noButton.style.animation = 'shake 0.3s';
-            noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px'; // mimis
+        function moveNoButton() {
+            noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
             noButton.style.top = Math.random() * (window.innerHeight - 100) + 'px';
-            setTimeout(() => noButton.style.animation = '', 300);
         }
 
         function createSnowflakes() {
@@ -102,6 +97,22 @@
                 document.body.appendChild(snowflake);
             }
         }
+   function launchFireworks() {
+            let duration = 10000;
+            let startTime = Date.now();
+            function createFirework() {
+                if (Date.now() - startTime > duration) return;
+                let firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * window.innerWidth + 'px';
+                firework.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(firework);
+                setTimeout(() => firework.remove(), 1000);
+                requestAnimationFrame(createFirework);
+            }
+            createFirework();
+        }
+
         createSnowflakes();
     </script>
 </body>
